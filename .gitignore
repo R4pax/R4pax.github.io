@@ -1,8 +1,6 @@
 # Other files and folders
-.settings/
+node_modules/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Archives
+*.zip
+*.7z
