@@ -1,5 +1,16 @@
 *
   font-family: "Roboto", sans-serif
+=bg-center-cover
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+=flex-center
+  display: flex
+  justify-content: center
+  align-items: center
+
+$primary: #1eacc7
+$white: #ffffff
 
 nav
   background-color: #212121
@@ -23,7 +34,7 @@ nav
   &_link
     font-size: 15px
     font-weight: 300
-    color: #ffffff
+    color: $white
     text-decoration: none
 
 header
@@ -44,12 +55,12 @@ header
   &_oficial
     margin-top: 6px
     opacity: 0.5
-    color: #ffffff
+    color: $white
     font-size: 13px
     font-weight: 100
 
   &_call
-    color: #ffffff
+    color: $white
     font-size: 12px
     font-weight: 300
     line-height: 14px
@@ -57,7 +68,7 @@ header
     margin-top: 10px
 
   &_phone
-    color: #ffffff
+    color: $white
     display: block
     font-size: 22px
     text-align: right
@@ -69,8 +80,8 @@ header
     height: 46px
     box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12)
     border: none
-    background-image: linear-gradient(to top, #1eacc7 0%, #4ce2ff 100%)
-    color: #ffffff
+    background: $primary
+    color: $white
     font-size: 14px
     text-align: center
     text-transform: uppercase
@@ -83,20 +94,20 @@ header
   text-align: center
 
   &_header
-    color: #ffffff
+    color: $white
     font-weight: 700
     text-transform: uppercase
     font-size: 60px
     margin-top: 150px
 
   &_subheader
-    color: #ffffff
+    color: $white
     font-size: 36px
     font-weight: 700
     text-transform: uppercase
 
   &_descr
-    color: #ffffff
+    color: $white
     font-size: 18px
     line-height: 24px
     margin-top: 23px
@@ -108,43 +119,55 @@ header
     box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.12)
     border: none
     border-radius: 4px
-    background-image: linear-gradient(to top, #1eacc7 0%, #4ce2ff 100%)
+    background: $primary
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21)
-    color: #ffffff
+    color: $white
     font-size: 18px
     text-transform: uppercase
 
-.reasons
-  padding: 71px 0 0 0
+.section
 
-  & .section_tag
+  &_tag
     width: 112px
     height: 24px
     background-color: #000000
-    color: #ffffff
+    color: $white
     font-weight: 100
     font-size: 11px
     line-height: 24px
     text-align: center
     text-transform: uppercase
     margin: 0 auto
+    &_white
+      background-color: $white
+      color: #070716
 
-  & .reasons_header
+  &_title
     color: #222222
     font-size: 38px
     font-weight: 700
     text-align: center
     text-transform: uppercase
     margin-top: 44px
+    &_white
+      color: $white
+
+  &_subtitle
+    color: #222222
+    font-size: 17px
+    text-align: center
+    &_white
+      color: $white
+
+.reasons
+  padding: 71px 0 0 0
 
   & .reasons_round
     width: 113px
     height: 113px
-    background-color: #1eacc7
+    background-color: $primary
     border-radius: 50%
-    display: flex
-    justify-content: center
-    align-items: center
+    +flex-center
     position: relative
     margin-right: 26px
     margin-bottom: 20px
@@ -154,7 +177,7 @@ header
     max-width: 50%
 
   & .reasons_subheader
-    color: #1eacc7
+    color: $primary
     font-size: 17px
     font-weight: 400
 
@@ -167,3 +190,68 @@ header
     font-weight: 300
     line-height: 21px
     text-align: justify
+
+.mobile
+  background: url("../img/bg/mobile.png") center / cover no-repeat
+  padding: 48px 0 79px
+  .row
+    margin-top: 32px
+
+  &_item
+    position: relative
+    width: 320px
+    height: 280px
+    margin: 0 auto
+    margin-bottom: 12px
+    padding-top: 91px
+    +bg-center-cover
+    &_1
+      background-image: url("../img/feature_1.png")
+    &_2
+      background-image: url("../img/feature_2.png")
+    &_3
+      background-image: url("../img/feature_3.png")
+    &_4
+      background-image: url("../img/feature_4.png")
+    &_5
+      background-image: url("../img/feature_5.png")
+    &_6
+      background-image: url("../img/feature_6.png")
+
+    &_subtitle
+      color: $white
+      font-size: 24px
+      line-height: 31px
+      text-align: center
+      text-transform: uppercase
+    &_plus
+      position: absolute
+      bottom: 35px
+      left: 50%
+      width: 26px
+      height: 26px
+      background-color: #000000
+      border-radius: 50%
+      transform: translateX(-50%)
+      cursor: pointer
+      +flex-center
+
+.choice
+  background-color: #070716
+  background-image: url("../img/bg/mobile.png")
+
+  background-position: 0 500px
+  background-repeat: repeat-x
+  padding: 57px 0 138px 0
+  &_image
+    display: block
+    width: 100%
+    max-width: 759px
+    margin: 0 auto
+    margin-top: 56px
+  &_text
+    color: #222222
+    font-size: 17px
+    font-weight: 300
+    line-height: 24px
+    text-align: center
