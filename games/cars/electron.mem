@@ -1,0 +1,6 @@
+npm init
+npm i -D electron@latest
+npm i path url -D 
+npm start    
+npm i electron-packager -g
+electron-packager .   
