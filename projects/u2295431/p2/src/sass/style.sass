@@ -1,5 +1,7 @@
 *
   font-family: "Roboto", sans-serif
+a
+  text-decoration: none
 =bg-center-cover
   background-position: center
   background-size: cover
@@ -8,6 +10,19 @@
   display: flex
   justify-content: center
   align-items: center
+=btn_hover
+  box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12)
+  border: none
+  background-color: $primary
+  color: $white
+  text-align: center
+  text-transform: uppercase
+  border-radius: 4px
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21)
+  transition: background-color 0.4s
+  &:hover
+    background-image: none
+    background-color: adjust-color($primary, $lightness: -10%)
 
 $primary: #1eacc7
 $white: #ffffff
@@ -35,7 +50,6 @@ nav
     font-size: 15px
     font-weight: 300
     color: $white
-    text-decoration: none
 
 header
   position: relative
@@ -73,20 +87,13 @@ header
     font-size: 22px
     text-align: right
     text-transform: uppercase
-    text-decoration: none
 
   &_btn
     width: 172px
     height: 46px
-    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12)
-    border: none
-    background: $primary
-    color: $white
     font-size: 14px
-    text-align: center
-    text-transform: uppercase
     margin-top: 8px
-    border-radius: 4px
+    +btn_hover
 
 .promo
   min-height: 800px
@@ -116,14 +123,8 @@ header
     margin-top: 118px
     width: 259px
     height: 63px
-    box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.12)
-    border: none
-    border-radius: 4px
-    background: $primary
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21)
-    color: $white
     font-size: 18px
-    text-transform: uppercase
+    +btn_hover
 
 .section
 
@@ -192,7 +193,7 @@ header
     text-align: justify
 
 .mobile
-  background: url("../img/bg/mobile.png") center / cover no-repeat
+  background: url("../img/bg/features.png") center / cover no-repeat
   padding: 48px 0 79px
   .row
     margin-top: 32px
@@ -235,10 +236,24 @@ header
       transform: translateX(-50%)
       cursor: pointer
       +flex-center
+      &::before,
+      &::after
+        content: ''
+        display: block
+        position: absolute
+        width: 14px
+        height: 2px
+        background-color: $primary
+      &::after
+        transform: rotate(90deg)
+      &:hover
+        &::before,
+        &::after
+          background-color: #fff
 
 .choice
   background-color: #070716
-  background-image: url("../img/bg/mobile.png")
+  background-image: url("../img/bg/features.png")
 
   background-position: 0 500px
   background-repeat: repeat-x
@@ -255,3 +270,121 @@ header
     font-weight: 300
     line-height: 24px
     text-align: center
+
+.require
+  padding: 68px 0 84px 0
+  &_block
+    margin: 33px 0
+    &_red
+      .require_title
+        color: #ff5656
+      .require_list li:before
+        background-image: url('../img/icons/red_checkmark.png')
+
+  &_descr
+    color: $primary
+    font-weight: 300
+
+  &_title
+    color: $primary
+    font-size: 22px
+
+  &_list
+    list-style-type: none
+    padding-left: 50px
+    margin-top: 22px
+    li
+      position: relative
+      font-size: 17px
+      font-weight: 300
+      line-height: 24px
+      margin-bottom: 10px
+      color: #020101
+      &::before
+        content: ''
+        position: absolute
+        left: -35px
+        width: 21px
+        height: 20px
+        background-image: url('../img/icons/blue_checkmark.png')
+        +bg-center-cover
+
+.world
+  position: relative
+  min-height: 717px
+  background-image: url(../img/bg/bottom.png)
+  padding: 49px 0
+  +bg-center-cover
+  &_link
+    position: absolute
+    bottom: 50px
+    left: 50%
+    transform: translateX(-50%)
+    color: #1fbad6
+    font-family: Roboto
+    font-size: 15px
+    text-transform: uppercase
+
+.footer
+  min-height: 160px
+  position: relative
+
+  &_line
+    width: 299px
+    height: 4px
+    background-color: #1fbad6
+    margin: 0 auto
+    margin-top: 14px
+
+  &_menu
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-top: 34px
+    &_item
+      color: #070716
+      font-size: 15px
+      font-weight: 300
+      text-transform: uppercase
+
+  &_submenu
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-top: 15px
+    &_item
+      color: #999999
+      font-size: 11px
+      font-weight: 300
+      text-transform: uppercase
+
+  &_lang
+    width: 50px
+    height: 11px
+    color: #1fbad6
+    font-size: 11px
+    font-weight: 400
+    text-align: center
+    text-transform: uppercase
+    margin: 0 auto
+    margin-top: 19px
+
+  &_soc
+    position: absolute
+    height: 100%
+    top: 0
+    left: 23px
+    +flex-center
+    &_elem
+      +flex-center
+      width: 32px
+      height: 32px
+      margin: 5px
+      background-color: #070716
+      border-radius: 50%
+  &_apps
+    position: absolute
+    height: 100%
+    top: 0
+    right: 23px
+    +flex-center
