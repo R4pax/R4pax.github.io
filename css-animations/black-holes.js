@@ -1,4 +1,4 @@
-const createHole = () => {
+export const createHole = () => {
   const x = Math.floor(Math.random() * 100);
   const y = Math.floor(Math.random() * 100);
   const css = document.createElement("style");
