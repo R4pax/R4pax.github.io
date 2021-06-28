@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Routes</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        padding: 0;
+        background: #000;
+        margin: 0;
+        font: normal 1em/1.5em Calibri;
+        --top: 80%;
+        --left: 20%;
+        --right: 40%;
+        --bottom: 30%;
+        animation: anima1 4s linear infinite, anima2 6s linear infinite,
+          anima3 8s linear infinite, anima4 10s linear infinite;
+      }
+      @keyframes anima1 {
+        0%,
+        100% {
+          --top: 20%;
+        }
+        25%,
+        75% {
+          --top: 50%;
+        }
+        50% {
+          --top: 80%;
+        }
+      }
+      @keyframes anima2 {
+        0%,
+        100% {
+          --bottom: 20%;
+        }
+        16%,
+        84% {
+          --bottom: 40%;
+        }
+        32%,
+        68% {
+          --bottom: 60%;
+        }
+        50% {
+          --bottom: 80%;
+        }
+      }
+      @keyframes anima3 {
+        0%,
+        100% {
+          --right: 20%;
+        }
+        12.5%,
+        87.5% {
+          --right: 35%;
+        }
+        25%,
+        75% {
+          --right: 50%;
+        }
+        37.5%,
+        62.5% {
+          --right: 65%;
+        }
+        50% {
+          --right: 80%;
+        }
+      }
+      @keyframes anima4 {
+        0%,
+        100% {
+          --left: 20%;
+        }
+        10%,
+        90% {
+          --left: 32%;
+        }
+        20%,
+        80% {
+          --left: 44%;
+        }
+        30%,
+        70% {
+          --left: 56%;
+        }
+        40%,
+        60% {
+          --left: 68%;
+        }
+        50% {
+          --left: 80%;
+        }
+      }
+
+      div {
+        position: absolute;
+        box-shadow: inset 0 0 20px 10px rgba(0, 0, 0, 0.5);
+        transition: all 1s linear;
+        opacity: 0.75;
+        border-top-left-radius: var(--top) var(--left);
+        border-top-right-radius: calc(100% - var(--top)) var(--right);
+        border-bottom-left-radius: var(--bottom) calc(100% - var(--left));
+        border-bottom-right-radius: calc(100% - var(--bottom))
+          calc(100% - var(--right));
+      }
+      .type0 {
+        animation: anima5 5s linear infinite, anima6 3s linear infinite,
+          anima7 20s linear infinite, anima8 10s linear infinite,
+          anima9 13s linear infinite, anima10 15s linear infinite;
+      }
+      .type1 {
+        animation: anima5 2s linear infinite, anima6 6s linear infinite,
+          anima7 18s linear infinite, anima8 19s linear infinite,
+          anima9 11s linear infinite, anima10 8s linear infinite;
+        animation-delay: 1s;
+      }
+      .type2 {
+        animation: anima5 11s linear infinite, anima6 9s linear infinite,
+          anima7 13s linear infinite, anima8 11s linear infinite,
+          anima9 17s linear infinite, anima10 9s linear infinite;
+        animation-delay: 2s;
+      }
+      .type3 {
+        animation: anima5 11s linear infinite, anima6 11s linear infinite,
+          anima7 8s linear infinite, anima8 7s linear infinite,
+          anima9 11s linear infinite, anima10 9s linear infinite;
+        animation-delay: 3s;
+      }
+      .type4 {
+        animation: anima5 6s linear infinite, anima6 11s linear infinite,
+          anima7 12s linear infinite, anima8 7s linear infinite,
+          anima9 11s linear infinite, anima10 12s linear infinite;
+        animation-delay: 4s;
+      }
+      .type5 {
+        animation: anima5 4s linear infinite, anima6 7s linear infinite,
+          anima7 12s linear infinite, anima8 12s linear infinite,
+          anima9 11s linear infinite, anima10 12s linear infinite;
+        animation-delay: 5s;
+      }
+      .type6 {
+        animation: anima5 7s linear infinite, anima6 3s linear infinite,
+          anima7 8s linear infinite, anima8 12s linear infinite,
+          anima9 11s linear infinite, anima10 6s linear infinite;
+        animation-delay: 6s;
+      }
+      .type7 {
+        animation: anima5 5s linear infinite, anima6 7s linear infinite,
+          anima7 13s linear infinite, anima8 7s linear infinite,
+          anima9 12s linear infinite, anima10 15s linear infinite;
+        animation-delay: 7s;
+      }
+      .type8 {
+        animation: anima5 5s linear infinite, anima6 7s linear infinite,
+          anima7 13s linear infinite, anima8 7s linear infinite,
+          anima9 12s linear infinite, anima10 15s linear infinite;
+        animation-delay: 8s;
+      }
+      .type9 {
+        animation: anima5 8s linear infinite, anima6 7s linear infinite,
+          anima7 13s linear infinite, anima8 13s linear infinite,
+          anima9 19s linear infinite, anima10 15s linear infinite;
+        animation-delay: 9s;
+      }
+      .type10 {
+        animation: anima5 4s linear infinite, anima6 7s linear infinite,
+          anima7 13s linear infinite, anima8 5s linear infinite,
+          anima9 19s linear infinite, anima10 7s linear infinite;
+        animation-delay: 10s;
+      }
+      .type11 {
+        animation: anima5 6s linear infinite, anima6 7s linear infinite,
+          anima7 18s linear infinite, anima8 5s linear infinite,
+          anima9 12s linear infinite, anima10 7s linear infinite;
+        animation-delay: 11s;
+      }
+      .type12 {
+        animation: anima5 6s linear infinite, anima6 11s linear infinite,
+          anima7 14s linear infinite, anima8 9s linear infinite,
+          anima9 12s linear infinite, anima10 7s linear infinite;
+        animation-delay: 12s;
+      }
+      .type13 {
+        animation: anima5 15s linear infinite, anima6 11s linear infinite,
+          anima7 14s linear infinite, anima8 13s linear infinite,
+          anima9 8s linear infinite, anima10 7s linear infinite;
+        animation-delay: 13s;
+      }
+      .type14 {
+        animation: anima5 8s linear infinite, anima6 11s linear infinite,
+          anima7 14s linear infinite, anima8 4s linear infinite,
+          anima9 13s linear infinite, anima10 7s linear infinite;
+        animation-delay: 14s;
+      }
+      .type15 {
+        animation: anima5 8s linear infinite, anima6 13s linear infinite,
+          anima7 14s linear infinite, anima8 6s linear infinite,
+          anima9 16s linear infinite, anima10 7s linear infinite;
+        animation-delay: 15s;
+      }
+      .type16 {
+        animation: anima5 6s linear infinite, anima6 13s linear infinite,
+          anima7 18s linear infinite, anima8 6s linear infinite,
+          anima9 16s linear infinite, anima10 12s linear infinite;
+        animation-delay: 16s;
+      }
+      .type17 {
+        animation: anima5 6s linear infinite, anima6 8s linear infinite,
+          anima7 18s linear infinite, anima8 16s linear infinite,
+          anima9 6s linear infinite, anima10 12s linear infinite;
+        animation-delay: 17s;
+      }
+      .type18 {
+        animation: anima5 6s linear infinite, anima6 8s linear infinite,
+          anima7 13s linear infinite, anima8 16s linear infinite,
+          anima9 9s linear infinite, anima10 6s linear infinite;
+        animation-delay: 18s;
+      }
+      .type19 {
+        animation: anima5 3s linear infinite, anima6 8s linear infinite,
+          anima7 9s linear infinite, anima8 11s linear infinite,
+          anima9 14s linear infinite, anima10 18s linear infinite;
+        animation-delay: 19s;
+      }
+      .type20 {
+        animation: anima5 6s linear infinite, anima6 2s linear infinite,
+          anima7 13s linear infinite, anima8 13s linear infinite,
+          anima9 17s linear infinite, anima10 14s linear infinite;
+        animation-delay: 20s;
+      }
+      @keyframes anima5 {
+        0%,
+        100% {
+          margin-left: -50px;
+          width: 100px;
+        }
+        50% {
+          margin-left: -25px;
+          width: 50px;
+        }
+      }
+      @keyframes anima6 {
+        0%,
+        100% {
+          margin-top: -50px;
+          height: 100px;
+        }
+        50% {
+          margin-top: -25px;
+          height: 50px;
+        }
+      }
+      @keyframes anima7 {
+        0%,
+        100% {
+          background: red;
+        }
+        14% {
+          background: orange;
+        }
+        28% {
+          background: yellow;
+        }
+        42% {
+          background: green;
+        }
+        56% {
+          background: cyan;
+        }
+        70% {
+          background: blue;
+        }
+        85% {
+          background: purple;
+        }
+      }
+      @keyframes anima8 {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes anima9 {
+        0%,
+        100% {
+          top: 50px;
+        }
+        50% {
+          top: calc(100% - 50px);
+        }
+      }
+      @keyframes anima10 {
+        0%,
+        100% {
+          left: 50px;
+        }
+        50% {
+          left: calc(100% - 50px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="type0"></div>
+    <div class="type1"></div>
+    <div class="type2"></div>
+    <div class="type3"></div>
+    <div class="type4"></div>
+    <div class="type5"></div>
+    <div class="type6"></div>
+    <div class="type7"></div>
+    <div class="type8"></div>
+    <div class="type9"></div>
+    <div class="type10"></div>
+    <div class="type11"></div>
+    <div class="type12"></div>
+    <div class="type13"></div>
+    <div class="type14"></div>
+    <div class="type15"></div>
+    <div class="type16"></div>
+    <div class="type17"></div>
+    <div class="type18"></div>
+    <div class="type19"></div>
+    <div class="type20"></div>
+  </body>
+</html>
