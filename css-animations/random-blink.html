@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random blink</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      div {
+        position: relative;
+        float: left;
+        animation-name: blink;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          background-color: #333;
+        }
+        50% {
+          background-color: #ccc;
+        }
+      }
+    </style>
+  </head>
+  <body></body>
+  <script>
+    const cols = 10;
+    const width = document.documentElement.offsetWidth;
+    const height = document.documentElement.offsetHeight;
+    const rows = Math.floor((cols * height) / width) + 1;
+    const elemSize = 100 / cols;
+    const css = document.createElement("style");
+    css.textContent = `div { width: ${elemSize}vw; height: ${elemSize}vw`;
+    document.head.appendChild(css);
+    for (let i = 0; i < cols * rows + 1; i++) {
+      const elem = document.createElement("div");
+      const dur = Math.random() * 5 + 2;
+      elem.style.animationDuration = `${dur}s`;
+      document.body.appendChild(elem);
+    }
+  </script>
+</html>
