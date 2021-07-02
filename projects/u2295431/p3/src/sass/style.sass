@@ -7,16 +7,19 @@
 .header
   min-height: 650px
   background: url("../img/bg/hero.png") center / cover no-repeat
-  padding: 21px 0
+  padding: 0px 10px 20px
   color: #FFFFFF
   text-align: right
+  @media ( max-width: 767px )
+    text-align: center
 
   &__logo
-    height: 45px
     img
-      height: 100%
+      margin-top: 20px
+      height: 45px
 
   &__represent
+    margin-top: 20px
     font-size: 12px
     line-height: 20px
     text-align: center
@@ -26,6 +29,7 @@
       line-height: 30px
 
   &__phone
+    margin-top: 20px
     span
       font-weight: bold
       font-size: 18px
