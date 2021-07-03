@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>grid-area</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .grid-container {
+        min-height: 100%;
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        grid-auto-rows: 1fr;
+        grid-template-areas:
+          "header header header"
+          "hero hero hero"
+          "sidebar descr descr"
+          "sidebar promo form"
+          "banner slider slider"
+          "footer footer footer";
+      }
+      @media (max-width: 768px) {
+        .grid-container {
+          grid-template-columns: 1fr 2fr;
+          grid-template-areas:
+            "header header"
+            "hero hero"
+            "sidebar descr"
+            "sidebar promo"
+            "sidebar form"
+            "banner slider"
+            "footer footer";
+        }
+      }
+      @media (max-width: 576px) {
+        .grid-container {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "header"
+            "hero"
+            "descr"
+            "promo"
+            "form"
+            "sidebar"
+            "banner"
+            "slider"
+            "footer";
+        }
+      }
+      .grid-elem {
+        font-size: 2em;
+        padding: 1em;
+        border-radius: 10px;
+        background-color: #369;
+        color: #fff;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .header {
+        grid-area: header;
+      }
+      .hero {
+        grid-area: hero;
+      }
+      .sidebar {
+        grid-area: sidebar;
+      }
+      .form {
+        grid-area: form;
+        justify-self: center;
+        align-self: center;
+      }
+      .descr {
+        grid-area: descr;
+        justify-self: right;
+      }
+      .slider {
+        grid-area: slider;
+      }
+      .promo {
+        grid-area: promo;
+      }
+      .banner {
+        grid-area: banner;
+      }
+      .footer {
+        grid-area: footer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="grid-elem header">header</div>
+      <div class="grid-elem hero">hero</div>
+      <div class="grid-elem sidebar">sidebar</div>
+      <div class="grid-elem form">form</div>
+      <div class="grid-elem descr">descr</div>
+      <div class="grid-elem slider">slider</div>
+      <div class="grid-elem promo">promo</div>
+      <div class="grid-elem banner">banner</div>
+      <div class="grid-elem footer">footer</div>
+    </div>
+  </body>
+</html>
