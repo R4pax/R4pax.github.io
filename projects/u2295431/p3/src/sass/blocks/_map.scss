@@ -1,0 +1,35 @@
+.map {
+  position: relative;
+  min-height: 630px;
+  background: #999;
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 460px;
+    min-height: 270px;
+    padding: 50px;
+    background: $main-color;
+    font-weight: 500;
+    font-size: 20px;
+    text-align: center;
+    color: #ffffff;
+
+    &__phone {
+      font-weight: 700;
+      margin: 36px auto;
+    }
+    &__social-link {
+      margin: 0 13px;
+      width: 52px;
+      height: 52px;
+      border: solid 2px #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
