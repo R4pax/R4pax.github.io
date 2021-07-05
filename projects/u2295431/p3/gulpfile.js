@@ -6,6 +6,7 @@ const autoprefixer = require("gulp-autoprefixer");
 const cleanCSS = require("gulp-clean-css");
 const imagemin = require("gulp-imagemin");
 const htmlmin = require("gulp-htmlmin");
+const jsmin = require("gulp-jsmin");
 
 gulp.task("server", function () {
   browserSync.init({
@@ -46,7 +47,11 @@ gulp.task("html", function () {
 });
 
 gulp.task("scripts", function () {
-  return gulp.src("src/js/**/*.js").pipe(gulp.dest("dist/js"));
+  return gulp
+    .src("src/js/**/*.js")
+    .pipe(jsmin())
+    .pipe(rename({ suffix: ".min" }))
+    .pipe(gulp.dest("dist/js"));
 });
 
 gulp.task("fonts", function () {
@@ -60,4 +65,15 @@ gulp.task("images", function () {
     .pipe(gulp.dest("dist/img"));
 });
 
-gulp.task("default", gulp.parallel("watch", "server", "styles", "html", "scripts", "fonts", "images"));
+gulp.task(
+  "default",
+  gulp.parallel(
+    "watch",
+    "server",
+    "styles",
+    "html",
+    "scripts",
+    "fonts",
+    "images"
+  )
+);
