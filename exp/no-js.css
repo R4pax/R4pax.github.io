@@ -109,15 +109,23 @@ body {
 
 .tabs {
   width: 640px;
-  margin: 0 auto;
+  margin: -60px auto 0;
   border: solid 1px #eee;
   font-size: 1.5em;
-  padding: 10px;
+  padding: 60px 10px 0;
   display: none;
 }
 .tabs:not(:target) + .tabs:not(:target) + .tabs,
 .tabs:target {
   display: block;
+}
+
+#lorem {
+  width: 640px;
+  margin: 0 auto;
+  border: solid 1px #eee;
+  font-size: 1.5em;
+  padding: 10px;
 }
 
 @keyframes appear {
