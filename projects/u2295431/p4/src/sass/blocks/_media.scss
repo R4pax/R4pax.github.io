@@ -1,0 +1,106 @@
+@media (max-width: 1200px) {
+  .container {
+    max-width: 960px;
+  }
+  .sidebar {
+    display: none;
+  }
+  .skills__stack {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .portfolio__wrapper {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "uber pulse plans"
+      "mac mac plans"
+      "ipad bread .";
+  }
+  .contacts__grid {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "image  info info"
+      "image  form form";
+  }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 720px;
+  }
+  .title_fz36 {
+    font-size: 3rem;
+  }
+  .title_fz48 {
+    font-size: 4rem;
+  }
+  .promo {
+    background-position: 60%;
+  }
+  .about__grid {
+    margin-top: 60px;
+    grid-template-columns: 1fr 10px 1fr;
+    grid-template-areas:
+      "image . info"
+      "image . web"
+      "image . mobile"
+      "image . design";
+  }
+  .skills__stack,
+  .skills__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 540px;
+  }
+  .title_fz36 {
+    font-size: 2.4rem;
+  }
+  .title_fz48 {
+    font-size: 3.2rem;
+  }
+  .about__grid {
+    margin-top: 60px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "image"
+      "info"
+      "web"
+      "mobile"
+      "design";
+  }
+  .skills__stack,
+  .skills__stats {
+    grid-template-columns: 1fr;
+  }
+  .portfolio__wrapper {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "uber pulse"
+      "bread plans"
+      "ipad plans"
+      "mac mac";
+  }
+
+  .contacts__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "info"
+      "form";
+  }
+  .contacts__image {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    padding: 0 10px;
+  }
+  .menu__block {
+    width: 100%;
+  }
+}

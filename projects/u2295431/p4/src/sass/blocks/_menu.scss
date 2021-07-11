@@ -1,0 +1,112 @@
+.menu {
+  display: none;
+  &:target {
+    display: block;
+  }
+
+  &__open-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #000;
+    background: none;
+    width: 30px;
+    height: 21px;
+    border: none;
+    border-top: solid 3px;
+    border-bottom: solid 3px;
+    &::after {
+      content: "";
+      width: 36px;
+      height: 3px;
+      background: currentColor;
+      position: absolute;
+      top: 6px;
+      right: 0;
+    }
+  }
+  &__overlay {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5);
+    animation: appear 0.3s ease forwards;
+  }
+  &__block {
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 345px;
+    background: #ffa501;
+    animation: slide-from-left 0.6s ease forwards;
+  }
+  &__list {
+    padding: 150px 40px 0;
+    list-style: none;
+  }
+  &__item {
+    font-weight: bold;
+    font-size: 24px;
+    margin-top: 15px;
+    &::before {
+      content: "";
+      display: inline-block;
+      width: 15px;
+      height: 15px;
+      border: 1px solid #000000;
+      border-radius: 50%;
+      margin-right: 20px;
+    }
+    a {
+      color: #ffffff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+  &__close-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    color: #000;
+    background: none;
+    width: 30px;
+    height: 30px;
+    border: none;
+    &::before,
+    &::after {
+      content: "";
+      width: 100%;
+      height: 3px;
+      background: currentColor;
+      position: absolute;
+      top: calc(50% - 1.5px);
+      left: 0;
+    }
+    &::before {
+      transform: rotate(45deg);
+    }
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  &__socials {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    bottom: 50px;
+    img {
+      width: 20px;
+      margin: 0 7px;
+    }
+  }
+}

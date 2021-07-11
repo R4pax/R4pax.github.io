@@ -1,0 +1,40 @@
+.with-circle {
+  padding-left: 1rem;
+  line-height: 3.6rem;
+  position: relative;
+  z-index: 1;
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 3.6rem;
+    height: 3.6rem;
+    background: $main-color;
+    border-radius: 50%;
+  }
+  &_center {
+    padding-left: 0;
+    &::before {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
+
+.with-line {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+  &::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: $main-color;
+  }
+  &_center::after {
+    margin: 20px auto 0;
+  }
+}

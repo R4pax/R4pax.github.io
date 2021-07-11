@@ -4,6 +4,8 @@
 @import "./base/variables";
 @import "./base/mixins";
 @import "./base/typography";
+@import "./base/decor";
+@import "./base/animations";
 
 * {
   font-family: "Poppins", sans-serif;
@@ -11,9 +13,21 @@
   padding: 0;
 }
 
+body {
+  padding-bottom: 100px;
+}
 .container {
-  max-width: 1140px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
 @import "./blocks/promo";
+@import "./blocks/sidebar";
+@import "./blocks/about";
+@import "./blocks/menu";
+@import "./blocks/experience";
+@import "./blocks/skills";
+@import "./blocks/portfolio";
+@import "./blocks/price";
+@import "./blocks/contacts";
+@import "./blocks/media";
