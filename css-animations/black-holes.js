@@ -30,4 +30,4 @@ const createHole = () => {
   document.body.appendChild(elem);
   setTimeout(createHole, 2000);
 };
-setTimeout(createHole, 20000);
+setTimeout(createHole, 2000);
