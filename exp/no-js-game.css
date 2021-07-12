@@ -1,0 +1,39 @@
+body,
+html {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.level {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.level:target .level {
+  display: none;
+  transform-origin: 0 100%;
+  animation: hide 5s ease;
+}
+
+@keyframes hide {
+  0% {
+    display: block;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+  100% {
+    display: block;
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+}
