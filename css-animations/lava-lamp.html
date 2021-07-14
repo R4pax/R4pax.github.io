@@ -3,25 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Routes</title>
+    <title>Lava Lamp</title>
     <style>
       html,
       body {
         width: 100%;
         height: 100%;
-        overflow: hidden;
         padding: 0;
-        background: #000;
         margin: 0;
-        font: normal 1em/1.5em Calibri;
+      }
+      body {
+        overflow: hidden;
+        background: #000;
+
         --top: 80%;
         --left: 20%;
         --right: 40%;
         --bottom: 30%;
-        animation: anima1 4s linear infinite, anima2 6s linear infinite,
-          anima3 8s linear infinite, anima4 10s linear infinite;
+        animation: change-top 4s linear infinite, change-left 6s linear infinite, change-right 8s linear infinite,
+          change-bottom 10s linear infinite;
       }
-      @keyframes anima1 {
+      @keyframes change-top {
         0%,
         100% {
           --top: 20%;
@@ -34,7 +36,7 @@
           --top: 80%;
         }
       }
-      @keyframes anima2 {
+      @keyframes change-left {
         0%,
         100% {
           --bottom: 20%;
@@ -51,7 +53,7 @@
           --bottom: 80%;
         }
       }
-      @keyframes anima3 {
+      @keyframes change-right {
         0%,
         100% {
           --right: 20%;
@@ -72,7 +74,7 @@
           --right: 80%;
         }
       }
-      @keyframes anima4 {
+      @keyframes change-bottom {
         0%,
         100% {
           --left: 20%;
@@ -97,166 +99,64 @@
           --left: 80%;
         }
       }
-
-      div {
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        box-shadow: inset 0 2.5vmax 5vmax 0 black;
+      }
+      .elem {
         position: absolute;
         box-shadow: inset 0 0 20px 10px rgba(0, 0, 0, 0.5);
-        transition: all 1s linear;
-        opacity: 0.75;
-        border-top-left-radius: var(--top) var(--left);
-        border-top-right-radius: calc(100% - var(--top)) var(--right);
-        border-bottom-left-radius: var(--bottom) calc(100% - var(--left));
-        border-bottom-right-radius: calc(100% - var(--bottom))
-          calc(100% - var(--right));
+        transition: border-radius 1s linear;
+
+        will-change: left, top, transform;
+
+        border-radius: var(--top) calc(100% - var(--top)) calc(100% - var(--bottom)) var(--bottom) / var(--left)
+          var(--right) calc(100% - var(--right)) calc(100% - var(--left));
+
+        animation: anim-width var(--width-duration) linear var(--width-delay) infinite,
+          anim-height var(--height-duration) linear var(--height-delay) infinite,
+          anim-background var(--background-duration) linear var(--background-delay) infinite,
+          anim-transform var(--transform-duration) linear var(--transform-delay) infinite,
+          anim-top var(--top-duration) linear var(--top-delay) infinite,
+          anim-left var(--left-duration) linear var(--left-delay) infinite,
+          anim-opacity var(--opacity-duration) linear var(--opacity-delay) infinite;
       }
-      .type0 {
-        animation: anima5 5s linear infinite, anima6 3s linear infinite,
-          anima7 20s linear infinite, anima8 10s linear infinite,
-          anima9 13s linear infinite, anima10 15s linear infinite;
-      }
-      .type1 {
-        animation: anima5 2s linear infinite, anima6 6s linear infinite,
-          anima7 18s linear infinite, anima8 19s linear infinite,
-          anima9 11s linear infinite, anima10 8s linear infinite;
-        animation-delay: 1s;
-      }
-      .type2 {
-        animation: anima5 11s linear infinite, anima6 9s linear infinite,
-          anima7 13s linear infinite, anima8 11s linear infinite,
-          anima9 17s linear infinite, anima10 9s linear infinite;
-        animation-delay: 2s;
-      }
-      .type3 {
-        animation: anima5 11s linear infinite, anima6 11s linear infinite,
-          anima7 8s linear infinite, anima8 7s linear infinite,
-          anima9 11s linear infinite, anima10 9s linear infinite;
-        animation-delay: 3s;
-      }
-      .type4 {
-        animation: anima5 6s linear infinite, anima6 11s linear infinite,
-          anima7 12s linear infinite, anima8 7s linear infinite,
-          anima9 11s linear infinite, anima10 12s linear infinite;
-        animation-delay: 4s;
-      }
-      .type5 {
-        animation: anima5 4s linear infinite, anima6 7s linear infinite,
-          anima7 12s linear infinite, anima8 12s linear infinite,
-          anima9 11s linear infinite, anima10 12s linear infinite;
-        animation-delay: 5s;
-      }
-      .type6 {
-        animation: anima5 7s linear infinite, anima6 3s linear infinite,
-          anima7 8s linear infinite, anima8 12s linear infinite,
-          anima9 11s linear infinite, anima10 6s linear infinite;
-        animation-delay: 6s;
-      }
-      .type7 {
-        animation: anima5 5s linear infinite, anima6 7s linear infinite,
-          anima7 13s linear infinite, anima8 7s linear infinite,
-          anima9 12s linear infinite, anima10 15s linear infinite;
-        animation-delay: 7s;
-      }
-      .type8 {
-        animation: anima5 5s linear infinite, anima6 7s linear infinite,
-          anima7 13s linear infinite, anima8 7s linear infinite,
-          anima9 12s linear infinite, anima10 15s linear infinite;
-        animation-delay: 8s;
-      }
-      .type9 {
-        animation: anima5 8s linear infinite, anima6 7s linear infinite,
-          anima7 13s linear infinite, anima8 13s linear infinite,
-          anima9 19s linear infinite, anima10 15s linear infinite;
-        animation-delay: 9s;
-      }
-      .type10 {
-        animation: anima5 4s linear infinite, anima6 7s linear infinite,
-          anima7 13s linear infinite, anima8 5s linear infinite,
-          anima9 19s linear infinite, anima10 7s linear infinite;
-        animation-delay: 10s;
-      }
-      .type11 {
-        animation: anima5 6s linear infinite, anima6 7s linear infinite,
-          anima7 18s linear infinite, anima8 5s linear infinite,
-          anima9 12s linear infinite, anima10 7s linear infinite;
-        animation-delay: 11s;
-      }
-      .type12 {
-        animation: anima5 6s linear infinite, anima6 11s linear infinite,
-          anima7 14s linear infinite, anima8 9s linear infinite,
-          anima9 12s linear infinite, anima10 7s linear infinite;
-        animation-delay: 12s;
-      }
-      .type13 {
-        animation: anima5 15s linear infinite, anima6 11s linear infinite,
-          anima7 14s linear infinite, anima8 13s linear infinite,
-          anima9 8s linear infinite, anima10 7s linear infinite;
-        animation-delay: 13s;
-      }
-      .type14 {
-        animation: anima5 8s linear infinite, anima6 11s linear infinite,
-          anima7 14s linear infinite, anima8 4s linear infinite,
-          anima9 13s linear infinite, anima10 7s linear infinite;
-        animation-delay: 14s;
-      }
-      .type15 {
-        animation: anima5 8s linear infinite, anima6 13s linear infinite,
-          anima7 14s linear infinite, anima8 6s linear infinite,
-          anima9 16s linear infinite, anima10 7s linear infinite;
-        animation-delay: 15s;
-      }
-      .type16 {
-        animation: anima5 6s linear infinite, anima6 13s linear infinite,
-          anima7 18s linear infinite, anima8 6s linear infinite,
-          anima9 16s linear infinite, anima10 12s linear infinite;
-        animation-delay: 16s;
-      }
-      .type17 {
-        animation: anima5 6s linear infinite, anima6 8s linear infinite,
-          anima7 18s linear infinite, anima8 16s linear infinite,
-          anima9 6s linear infinite, anima10 12s linear infinite;
-        animation-delay: 17s;
-      }
-      .type18 {
-        animation: anima5 6s linear infinite, anima6 8s linear infinite,
-          anima7 13s linear infinite, anima8 16s linear infinite,
-          anima9 9s linear infinite, anima10 6s linear infinite;
-        animation-delay: 18s;
-      }
-      .type19 {
-        animation: anima5 3s linear infinite, anima6 8s linear infinite,
-          anima7 9s linear infinite, anima8 11s linear infinite,
-          anima9 14s linear infinite, anima10 18s linear infinite;
-        animation-delay: 19s;
-      }
-      .type20 {
-        animation: anima5 6s linear infinite, anima6 2s linear infinite,
-          anima7 13s linear infinite, anima8 13s linear infinite,
-          anima9 17s linear infinite, anima10 14s linear infinite;
-        animation-delay: 20s;
-      }
-      @keyframes anima5 {
+
+      @keyframes anim-opacity {
         0%,
         100% {
-          margin-left: -50px;
-          width: 100px;
+          opacity: 0.6;
         }
         50% {
-          margin-left: -25px;
-          width: 50px;
+          opacity: 0.9;
         }
       }
-      @keyframes anima6 {
+      @keyframes anim-width {
         0%,
         100% {
-          margin-top: -50px;
-          height: 100px;
+          width: 10vmax;
+          margin-left: -5vmax;
         }
         50% {
-          margin-top: -25px;
-          height: 50px;
+          width: 5vmax;
+          margin-left: -2.5vmax;
         }
       }
-      @keyframes anima7 {
+      @keyframes anim-height {
+        0%,
+        100% {
+          height: 10vmax;
+          margin-top: -5vmax;
+        }
+        50% {
+          height: 5vmax;
+          margin-top: 2.5vmax;
+        }
+      }
+      @keyframes anim-background {
         0%,
         100% {
           background: red;
@@ -280,7 +180,7 @@
           background: purple;
         }
       }
-      @keyframes anima8 {
+      @keyframes anim-transform {
         0% {
           transform: rotate(0deg);
         }
@@ -288,47 +188,56 @@
           transform: rotate(360deg);
         }
       }
-      @keyframes anima9 {
+      @keyframes anim-top {
         0%,
         100% {
-          top: 50px;
+          top: 2.5vmax;
         }
         50% {
-          top: calc(100% - 50px);
+          top: calc(100% - 2.5vmax);
         }
       }
-      @keyframes anima10 {
+      @keyframes anim-left {
         0%,
         100% {
-          left: 50px;
+          left: 2.5vmax;
         }
         50% {
-          left: calc(100% - 50px);
+          left: calc(100% - 2.5vmax);
         }
       }
     </style>
   </head>
-  <body>
-    <div class="type0"></div>
-    <div class="type1"></div>
-    <div class="type2"></div>
-    <div class="type3"></div>
-    <div class="type4"></div>
-    <div class="type5"></div>
-    <div class="type6"></div>
-    <div class="type7"></div>
-    <div class="type8"></div>
-    <div class="type9"></div>
-    <div class="type10"></div>
-    <div class="type11"></div>
-    <div class="type12"></div>
-    <div class="type13"></div>
-    <div class="type14"></div>
-    <div class="type15"></div>
-    <div class="type16"></div>
-    <div class="type17"></div>
-    <div class="type18"></div>
-    <div class="type19"></div>
-    <div class="type20"></div>
-  </body>
+  <body></body>
+  <script>
+    const animations = ["width", "height", "background", "transform", "top", "left", "opacity", "border"];
+    const durationRange = [10, 40];
+    const delayRange = [0, 40];
+
+    const randomFromRange = ([a, b]) => {
+      return (Math.random() * (b - a) + a).toFixed(2);
+    };
+
+    const duration = () => {
+      return randomFromRange(durationRange) + "s";
+    };
+    const delay = () => {
+      return -randomFromRange(delayRange) + "s";
+    };
+
+    const createElement = () => {
+      let div = document.createElement("div");
+      div.classList.add("elem");
+      div.onpointerdown = (e) => e.target.remove();
+      animations.forEach((anim) => {
+        div.style.setProperty(`--${anim}-duration`, duration());
+        div.style.setProperty(`--${anim}-delay`, delay());
+      });
+      return div;
+    };
+
+    for (let i = 0; i < 100; i++) {
+      document.body.append(createElement());
+    }
+  </script>
 </html>
