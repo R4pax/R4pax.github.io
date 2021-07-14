@@ -3,22 +3,24 @@ const vars = {
   width: 128,
   height: 64,
   radius: 25,
-  count: 4,
-  duration: 10,
+  count: 3,
+  duration: 20,
 };
 
 function updateCssVars() {
+  const opacity = (0.8 - vars.count / 180).toFixed(2);
+  document.documentElement.style.setProperty("--o", opacity);
   document.documentElement.style.setProperty("--br", vars.radius);
   document.documentElement.style.setProperty("--bw", vars.width + "px");
   document.documentElement.style.setProperty("--bh", vars.height + "px");
-  document.documentElement.style.setProperty(`--ad`, vars.duration + "s");
+  document.documentElement.style.setProperty(`--a-dur`, vars.duration + "s");
 }
 
 function createElement(i) {
   const delay = -((i * vars.duration) / vars.count).toFixed(2) + "s";
   const div = document.createElement("div");
   div.classList.add("block");
-  div.style.setProperty(`--animation-delay`, delay);
+  div.style.setProperty(`--a-del`, delay);
   return div;
 }
 
