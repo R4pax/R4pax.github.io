@@ -9,31 +9,70 @@
       :root {
         /* основные параметры */
         --o: 1; /* прозрачность блоков */
-        --br: 50; /* размер бордера в процентах */
-        --bh: 150px; /* высота элемента */
+        --r1-pc: 30; /* правый нижний бордер в процентах */
+        --r2-pc: 20; /* правый верхний бордер в процентах */
+        --r3-pc: 10; /* левый верхний бордер в процентах */
+        --r4-pc: 40; /* левый нижний бордер в процентах */
+        --bh: 100px; /* высота элемента */
         --bw: 150px; /* ширина элемента */
         --a-dur: 20s; /* длительность анимации */
 
         /* производные параметры */
-        --brp: calc(min(var(--bw), var(--bh)) * var(--br) / 100); /* бордер в пикселях */
-        --bh-br: calc(var(--bh) - 2 * var(--brp)); /* высота без радиусов */
-        --bw-br: calc(var(--bw) - 2 * var(--brp)); /* ширина без радиусов */
-        --arc: calc(1.57 * var(--brp)); /* pi*R/2 - длина дуги скругления угла блока*/
+        --r3: calc(min(var(--bw), var(--bh)) * var(--r3-pc) / 100); /* левый верхний бордер в пикселях */
+        --r2: calc(min(var(--bw), var(--bh)) * var(--r2-pc) / 100); /* правый верхний бордер в пикселях */
+        --r1: calc(min(var(--bw), var(--bh)) * var(--r1-pc) / 100); /* правый нижний бордер в пикселях */
+        --r4: calc(min(var(--bw), var(--bh)) * var(--r4-pc) / 100); /* левый нижний бордер в пикселях */
+
+        --a1: calc(1.57 * var(--r1)); /* длина дуги правый нижний yгол*/
+        --a2: calc(1.57 * var(--r2)); /* длина дуги правый верхний угол*/
+        --a3: calc(1.57 * var(--r3)); /* длина дуги левый верхний угол*/
+        --a4: calc(1.57 * var(--r4)); /* длина дуги левый нижний угол*/
 
         /* transform-origin */
-        --to-rb: calc(100% - var(--brp)) calc(100% - var(--brp)); /* центр правого нижнего скругления */
-        --to-rt: calc(100% - var(--brp)) var(--brp); /* центр правого верхнего скругления */
-        --to-lt: var(--brp) var(--brp); /* центр левого верхнего скругления */
-        --to-lb: var(--brp) calc(100% - var(--brp)); /* центр левого нижнего скругления */
+        --to-rb: calc(100% - var(--r1)) calc(100% - var(--r1)); /* центр правого нижнего скругления */
+        --to-rt: calc(100% - var(--r2)) var(--r2); /* центр правого верхнего скругления */
+        --to-lt: var(--r3) var(--r3); /* центр левого верхнего скругления */
+        --to-lb: var(--r4) calc(100% - var(--r4)); /* центр левого нижнего скругления */
 
         /* transform */
-        --t-1-0: translate(var(--arc), 0) rotate(90deg);
-        --t-1-1: translate(calc(var(--arc) + var(--bh-br)), var(--bh-br)) rotate(90deg);
-        --t-2-0: translate(calc(2 * var(--arc) + var(--bh-br)), var(--bh-br)) rotate(180deg);
-        --t-2-1: translate(calc(2 * var(--arc) + var(--bh-br) + 2 * var(--bw-br)), var(--bh-br)) rotate(180deg);
-        --t-3-0: translate(calc(3 * var(--arc) + var(--bh-br) + 2 * var(--bw-br)), var(--bh-br)) rotate(270deg);
-        --t-3-1: translate(calc(3 * var(--arc) + 2 * var(--bh-br) + 2 * var(--bw-br)), 0) rotate(270deg);
-        --t-4: translate(calc(4 * var(--arc) + 2 * var(--bh-br) + 2 * var(--bw-br)), 0) rotate(360deg);
+        --t-1-0: translate(var(--a1), 0) rotate(90deg);
+        --t-1-1: translate(calc(var(--a1) + var(--bh) - 2 * var(--r1)), calc(100% - 2 * var(--r2))) rotate(90deg);
+        --t-2-0: translate(calc(var(--a2) + var(--a1) + var(--bh) - 2 * var(--r1)), calc(100% - 2 * var(--r2)))
+          rotate(180deg);
+        --t-2-1: translate(
+            calc(
+              var(--a2) + var(--a1) + var(--bw) - var(--r3) - var(--r1) + var(--bh) - var(--r1) - var(--r2) + var(--bw) -
+                var(--r3) - var(--r2)
+            ),
+            calc(100% - 2 * var(--r3))
+          )
+          rotate(180deg);
+
+        --t-3-0: translate(
+            calc(
+              var(--a3) + var(--a2) + var(--a1) + var(--bw) - var(--r3) - var(--r1) + var(--bh) - var(--r1) - var(--r2) +
+                var(--bw) - var(--r3) - var(--r2)
+            ),
+            calc(100% - 2 * var(--r3))
+          )
+          rotate(270deg);
+        --t-3-1: translate(
+            calc(
+              var(--a3) + var(--a2) + var(--a1) + var(--bw) - var(--r3) - var(--r1) + var(--bh) - var(--r1) - var(--r2) +
+                var(--bw) - var(--r3) - var(--r2) - var(--r4) + var(--r3) + var(--bh) - var(--r3) - var(--r4)
+            ),
+            0
+          )
+          rotate(270deg);
+        --t-4: translate(
+            calc(
+              var(--a4) + var(--a3) + var(--a2) + var(--a1) + var(--bw) - var(--r3) - var(--r1) + var(--bh) - var(--r1) -
+                var(--r2) + var(--bw) - var(--r3) - var(--r2) - var(--r4) + var(--r3) + var(--bh) - var(--r3) -
+                var(--r4)
+            ),
+            0
+          )
+          rotate(360deg);
       }
       html,
       body {
@@ -47,7 +86,10 @@
         align-items: center;
       }
       .floor {
-        width: calc(4 * var(--arc) + 2 * var(--bh-br) + 3 * var(--bw-br) + 2 * var(--brp));
+        width: calc(
+          var(--a4) + var(--a3) + var(--a2) + var(--a1) + 2 * var(--bh) + 3 * var(--bw) - 2 * var(--r1) - 2 * var(--r2) -
+            2 * var(--r3) - 2 * var(--r4)
+        );
         position: relative;
         margin: 0 auto;
         height: var(--bh);
@@ -76,14 +118,16 @@
         font-weight: 700;
         font-size: 1.5em;
         box-sizing: border-box;
-        border-radius: var(--brp);
-        animation: rotata var(--a-dur) linear var(--a-del) infinite;
+        border-top-left-radius: var(--r3);
+        border-top-right-radius: var(--r2);
+        border-bottom-left-radius: var(--r4);
+        border-bottom-right-radius: var(--r1);
+        animation: rotata var(--a-dur) linear var(--a-del) infinite alternate;
       }
 
       .track {
         opacity: 0.25;
-        display: none;
-        border: solid 15px #000;
+        border: solid 1px #000;
         z-index: -1;
       }
       .track-point_0 {
@@ -121,12 +165,9 @@
       @keyframes rotata {
         0% {
           transform-origin: var(--to-rb);
-          opacity: 0;
           background: red;
-          z-index: 1;
-        }
-        3% {
           opacity: var(--o);
+          z-index: 1;
         }
         24.99% {
           transform-origin: var(--to-rb);
@@ -153,21 +194,27 @@
           transform-origin: var(--to-lb);
           transform: var(--t-3-1);
         }
-        97% {
-          opacity: var(--o);
-        }
         100% {
           background: green;
-          opacity: 0;
           transform-origin: var(--to-lb);
           transform: var(--t-4);
+          opacity: var(--o);
           z-index: 100;
         }
       }
     </style>
   </head>
   <body>
-    <div class="floor"></div>
+    <div class="floor">
+      <div class="block track track-point_0">0</div>
+      <div class="block track track-point_1-0">1-0</div>
+      <div class="block track track-point_1-1">1-1</div>
+      <div class="block track track-point_2-0">2-0</div>
+      <div class="block track track-point_2-1">2-1</div>
+      <div class="block track track-point_3-0">3-0</div>
+      <div class="block track track-point_3-1">3-1</div>
+      <div class="block track track-point_4">4</div>
+    </div>
 
     <div class="settings">
       <label for="duration">duration s</label>
@@ -178,18 +225,11 @@
       <input type="range" data-unit="px" id="width" min="32" max="256" />
       <label for="height">height px</label>
       <input type="range" data-unit="px" id="height" min="32" max="256" />
-      <label for="radius">radius %</label>
-      <input type="range" data-unit="%" id="radius" min="0" max="50" />
+      <label for="radius_1">radius_1 %</label><input type="range" data-unit="%" id="radius_1" min="0" max="50" />
+      <label for="radius_2">radius_2 %</label><input type="range" data-unit="%" id="radius_2" min="0" max="50" />
+      <label for="radius_3">radius_3 %</label><input type="range" data-unit="%" id="radius_3" min="0" max="50" />
+      <label for="radius_4">radius_4 %</label><input type="range" data-unit="%" id="radius_4" min="0" max="50" />
     </div>
-
-    <!-- <div class="block track track-point_0">0</div>
-    <div class="block track track-point_1-0">1-0</div>
-    <div class="block track track-point_1-1">1-1</div>
-    <div class="block track track-point_2-0">2-0</div>
-    <div class="block track track-point_2-1">2-1</div>
-    <div class="block track track-point_3-0">3-0</div>
-    <div class="block track track-point_3-1">3-1</div>
-    <div class="block track track-point_4">4</div> -->
   </body>
 
   <script src="block-rotation.js"></script>
