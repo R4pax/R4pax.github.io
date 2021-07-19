@@ -26,10 +26,22 @@
         position: absolute;
         width: 100px;
         height: 100px;
-        background: #369;
         border-radius: 30%;
-        animation: slide 36s linear var(--anim-delay) infinite;
+        animation: slide 36s linear var(--anim-delay) infinite, bg 1s linear var(--anim-delay) infinite;
       }
+      @keyframes bg {
+        0%,
+        36% {
+          background: #900;
+        }
+        36.01% {
+          background: #369;
+        }
+        100% {
+          background: #369;
+        }
+      }
+
       @keyframes slide {
         0.00%,
         1.00% {
