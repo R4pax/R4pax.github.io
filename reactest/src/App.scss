@@ -1,0 +1,15 @@
+.component {
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  margin: 1em;
+  &_1 {
+    background: hsla(0, 100, 50, 0.2);
+  }
+  &_2 {
+    background: hsla(50, 100, 50, 0.2);
+  }
+  &_3 {
+    background: hsla(100, 100, 50, 0.2);
+  }
+}
