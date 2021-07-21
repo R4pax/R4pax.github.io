@@ -17,7 +17,6 @@ document.querySelector(".promo__bg").style.backgroundImage = "url(img/bg.jpg)";
 const form = document.querySelector("form.add");
 const deleteBtns = document.querySelectorAll("div.delete");
 const moviesList = document.querySelector(".promo__interactive-list");
-
 form.addEventListener("submit", addMovie);
 
 function addMovie(e) {
@@ -46,15 +45,12 @@ const refreshMoviesList = () => {
 };
 
 const addDeleteEvents = () => {
-  document.querySelectorAll("div.delete").forEach((el) => {
-    el.addEventListener("click", deleteMovie);
+  document.querySelectorAll("div.delete").forEach((el, i) => {
+    el.addEventListener("click", () => {
+      movieDB.movies.splice(i, 1);
+      refreshMoviesList();
+    });
   });
 };
-
-function deleteMovie(e) {
-  const id = e.currentTarget.parentNode.dataset.num;
-  movieDB.movies.splice(id, 1);
-  refreshMoviesList();
-}
 
 refreshMoviesList();
