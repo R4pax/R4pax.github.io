@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1000px;
+        margin: auto;
+      }
+      .container::after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      .elem-wrapper {
+        position: relative;
+        float: left;
+        padding: 5px;
+        box-sizing: border-box;
+      }
+      .elem-wrapper:nth-child(8n + 1),
+      .elem-wrapper:nth-child(8n + 6) {
+        width: 50%;
+        aspect-ratio: 1 / 1;
+      }
+      .elem-wrapper:nth-child(8n + 6) {
+        float: right;
+      }
+      .elem-wrapper:nth-child(8n + 2),
+      .elem-wrapper:nth-child(8n + 5) {
+        width: 50%;
+        aspect-ratio: 2 / 1;
+      }
+      .elem-wrapper:nth-child(8n + 3),
+      .elem-wrapper:nth-child(8n + 4),
+      .elem-wrapper:nth-child(8n + 8),
+      .elem-wrapper:nth-child(8n + 7) {
+        width: 25%;
+        aspect-ratio: 1 / 1;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          max-width: 500px;
+        }
+        .elem-wrapper:nth-child(8n + 1),
+        .elem-wrapper:nth-child(8n + 6),
+        .elem-wrapper:nth-child(8n + 2),
+        .elem-wrapper:nth-child(8n + 5) {
+          width: 100%;
+        }
+        .elem-wrapper:nth-child(8n + 3),
+        .elem-wrapper:nth-child(8n + 4),
+        .elem-wrapper:nth-child(8n + 8),
+        .elem-wrapper:nth-child(8n + 7) {
+          width: 50%;
+        }
+      }
+
+      .elem {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #369;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2em;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="elem-wrapper">
+        <div class="elem">1</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">2</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">3</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">4</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">5</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">6</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">7</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">8</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">9</div>
+      </div>
+      <div class="elem-wrapper">
+        <div class="elem">10</div>
+      </div>
+    </div>
+  </body>
+</html>
