@@ -28,11 +28,17 @@
         width: 10%;
         height: auto;
       }
+      object {
+        width: 10%;
+        height: auto;
+      }
     </style>
   </head>
-  <body></body>
+  <body>
+    <object data="circle.svg" type="image/svg+xml"></object>
+  </body>
   <script>
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 9; i++) {
       setTimeout(() => {
         document.body.innerHTML += `<img src="./circle-css.svg?id=${Math.random()}" />`;
       }, i * 1000);

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buttons</title>
+    <style>
+      html {
+        font-size: 10px;
+      }
+      .arrow {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        height: 4.8rem;
+        width: 4.8rem;
+        border-radius: 50%;
+        background: #e8e5e2;
+        position: relative;
+        cursor: pointer;
+      }
+      .arrow::before,
+      .arrow::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: transform 0.4s ease;
+      }
+      .arrow::before {
+        width: 2.4rem;
+        height: 1px;
+        background: #000;
+      }
+      .arrow::after {
+        width: 0.8rem;
+        height: 0.8rem;
+        border-top: solid 1px #000;
+        border-left: solid 1px #000;
+        transform-origin: 0 0;
+      }
+      .arrow-right::after {
+        transform: translateX(-1.3rem) scaleX(0.9) rotate(-45deg);
+      }
+      .arrow-left::after {
+        transform: translateX(1.3rem) scaleX(-0.9) rotate(-45deg);
+      }
+      .arrow-right::before {
+        transform: translate(-50%, -50%) scaleX(1);
+      }
+      .arrow-left::before {
+        transform: translate(-50%, -50%) scaleX(-1);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="arrow arrow-right"></button>
+  </body>
+  <script>
+    const switchArrowClass = ({ target }) => {
+      target.classList.toggle("arrow-right");
+      target.classList.toggle("arrow-left");
+    };
+    document.querySelectorAll("button.arrow").forEach((el) => el.addEventListener("click", switchArrowClass));
+  </script>
+</html>
