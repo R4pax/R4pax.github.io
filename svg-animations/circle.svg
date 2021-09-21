@@ -1,0 +1,26 @@
+<svg id="eWdN5zbeSY71" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  viewBox="0 0 600 600" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+  <g id="elements-wrapper" width="480" height="480">
+    <ellipse rx="200" ry="200" transform="matrix(1 0 0 1 240 240)" opacity="1" fill="none" stroke="rgb(221,128,28)"
+      stroke-opacity="1" stroke-width="20" stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+      stroke-dashoffset="0" stroke-dasharray="1256.64" id="ellipse-8vu4vq4ucfh"
+      style="mix-blend-mode: normal; paint-order: fill"></ellipse>
+  </g>
+  <script>
+    <![CDATA[
+    console.log("waw");
+    let elem = document.querySelector("#ellipse-8vu4vq4ucfh"); 
+    let startOffset = 1256.64;
+    let time = 1000;
+    let speed = startOffset / time;
+    function anima(timestamp) {
+      console.log(timestamp);
+      let offset = startOffset - timestamp * speed;
+      if (offset < 0) offset = 0
+      elem.setAttribute("stroke-dashoffset", offset);
+      if (offset > 0) requestAnimationFrame(anima);
+    } 
+    requestAnimationFrame(anima);
+    ]]>
+  </script>
+</svg>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desk</title>
+    <style>
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .anima {
+        width: 200px;
+        height: 200px;
+        background-image: url("./circle-css.svg");
+      }
+      img {
+        width: 10%;
+        height: auto;
+      }
+      object {
+        width: 10%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <object data="circle.svg" type="image/svg+xml"></object>
+  </body>
+  <script>
+    for (i = 0; i < 9; i++) {
+      setTimeout(() => {
+        document.body.innerHTML += `<img src="./circle-css.svg?id=${Math.random()}" />`;
+      }, i * 1000);
+    }
+  </script>
+</html>
