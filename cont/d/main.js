@@ -21,20 +21,36 @@ let obj = {
       hasChanged: true,
     },
     {
-      file: "./src/pages/a.js",
+      file: "@/pages/a.js",
       deps: ["@/pages/b.js"],
     },
     {
       file: "./src/pages/b.js",
-      deps: [],
-      hasChanged: true,
+      deps: ["./1.js"],
+      hasChanged: false,
     },
   ],
   specs: [
     // информация о тестах
     {
-      file: "./src/specs/1.js",
+      file: "@/specs/11.js",
       deps: ["/var/www/projects/project1/src/pages/a.js"],
+    },
+    {
+      file: "./src/specs/2.js",
+      deps: ["./b.js"],
+    },
+    {
+      file: "./src/specs/3.js",
+      deps: [
+        "/var/www/projects/project1/src/pages/b.js",
+        "/var/www/projects/project1/src/pages/a.js",
+        "/var/www/projects/project1/src/pages/1.js",
+      ],
+    },
+    {
+      file: "./src/specs/4.js",
+      deps: ["/var/www/projects/project1/src/pages/1.js"],
     },
   ],
 };
@@ -43,9 +59,10 @@ func = function (input) {
   function fileToAbsPath(file) {
     for (const key in input.aliases) {
       const value = input.aliases[key];
-      file = file.replace(key, value);
+      const reg = new RegExp(`^${key}`);
+      file = file.replace(reg, value);
     }
-    return file.replace(/^\.\//, input.absoluteRepoPath + "/");
+    return file.replace(/^\./, input.absoluteRepoPath);
   }
 
   let hasChanged = [];
@@ -53,15 +70,16 @@ func = function (input) {
     if (v.hasChanged) hasChanged.push(fileToAbsPath(v.file));
   });
   hasChanged = [...new Set(hasChanged)];
+  console.log(1, hasChanged);
 
   let someChanged = true;
   while (someChanged) {
     someChanged = false;
     input.modules.forEach((module) => {
       if (module.hasChanged) return;
-      let path = module.file.replace(/\/[^/]*$/, "");
+      let path = module.file.replace(/\/[^\/]*$/, "");
       module.deps.forEach((dep) => {
-        dep = fileToAbsPath(dep.replace(/^\.\//, path + "/"));
+        dep = fileToAbsPath(dep.replace(/^\./, path));
         if (hasChanged.includes(dep)) {
           hasChanged.push(fileToAbsPath(module.file));
           module.hasChanged = true;
@@ -70,12 +88,13 @@ func = function (input) {
       });
     });
   }
+  console.log(2, hasChanged);
 
   let testToRun = [];
   input.specs.forEach((test) => {
-    let path = test.file.replace(/\/[^/]*$/, "");
+    let path = test.file.replace(/\/[^\/]*$/, "");
     test.deps.forEach((dep) => {
-      dep = fileToAbsPath(dep.replace(/^\.\//, path + "/"));
+      dep = fileToAbsPath(dep.replace(/^\./, path));
       if (hasChanged.includes(dep)) {
         testToRun.push(fileToAbsPath(test.file));
       }
@@ -87,4 +106,4 @@ func = function (input) {
   return testToRun.sort();
 };
 
-console.log(func(obj));
+console.log(3, func(obj));
