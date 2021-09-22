@@ -22,7 +22,7 @@ let obj = {
     },
     {
       file: "@/pages/a.js",
-      deps: ["@/pages/b.js"],
+      deps: [],
     },
     {
       file: "./src/pages/b.js",
@@ -38,7 +38,7 @@ let obj = {
     },
     {
       file: "./src/specs/2.js",
-      deps: ["./b.js"],
+      deps: ["@/pages/b.js"],
     },
     {
       file: "./src/specs/3.js",
@@ -56,18 +56,44 @@ let obj = {
 };
 
 func = function (input) {
-  function fileToAbsPath(file) {
-    for (const key in input.aliases) {
-      const value = input.aliases[key];
-      const reg = new RegExp(`^${key}`);
-      file = file.replace(reg, value);
-    }
-    return file.replace(/^\./, input.absoluteRepoPath);
+  const obj = JSON.parse(JSON.stringify(input));
+  const aliases = obj.aliases;
+  const absPath = obj.absoluteRepoPath;
+
+  function addParentPath(path, parent) {
+    return path.replace(/^\./, parent);
   }
 
+  for (const key in aliases) {
+    aliases[key] = addParentPath(aliases[key], absPath);
+  }
+
+  function replaceAliases(path) {
+    for (const key in aliases) {
+      const value = aliases[key];
+      const reg = new RegExp(`^${key}`);
+      path = path.replace(reg, value);
+    }
+    return path;
+  }
+
+  function normalizePaths(obj) {
+    for (const key in obj) {
+      const elem = obj[key];
+      elem.file = addParentPath(replaceAliases(elem.file), absPath);
+      const path = elem.file.replace(/\/[^\/]*$/, "");
+      for (let i = 0; i < elem.deps.length; i++) {
+        elem.deps[i] = addParentPath(replaceAliases(elem.deps[i]), path);
+      }
+    }
+  }
+
+  normalizePaths(obj.modules);
+  normalizePaths(obj.specs);
+
   let hasChanged = [];
-  input.modules.forEach((v) => {
-    if (v.hasChanged) hasChanged.push(fileToAbsPath(v.file));
+  obj.modules.forEach((v) => {
+    if (v.hasChanged) hasChanged.push(v.file);
   });
   hasChanged = [...new Set(hasChanged)];
   console.log(1, hasChanged);
@@ -75,13 +101,11 @@ func = function (input) {
   let someChanged = true;
   while (someChanged) {
     someChanged = false;
-    input.modules.forEach((module) => {
+    obj.modules.forEach((module) => {
       if (module.hasChanged) return;
-      let path = module.file.replace(/\/[^\/]*$/, "");
       module.deps.forEach((dep) => {
-        dep = fileToAbsPath(dep.replace(/^\./, path));
         if (hasChanged.includes(dep)) {
-          hasChanged.push(fileToAbsPath(module.file));
+          hasChanged.push(module.file);
           module.hasChanged = true;
           someChanged = true;
         }
@@ -91,12 +115,10 @@ func = function (input) {
   console.log(2, hasChanged);
 
   let testToRun = [];
-  input.specs.forEach((test) => {
-    let path = test.file.replace(/\/[^\/]*$/, "");
+  obj.specs.forEach((test) => {
     test.deps.forEach((dep) => {
-      dep = fileToAbsPath(dep.replace(/^\./, path));
       if (hasChanged.includes(dep)) {
-        testToRun.push(fileToAbsPath(test.file));
+        testToRun.push(test.file);
       }
     });
   });
